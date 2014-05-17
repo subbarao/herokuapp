@@ -1,6 +1,7 @@
 Pfl::Application.routes.draw do
-  root 'seats#index'
-  resources :seats, only: [:index, :show]
+  root 'mlas#index'
+  resources :mlas, only: [:index, :show]
+  resources :mps, only: [:index, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
