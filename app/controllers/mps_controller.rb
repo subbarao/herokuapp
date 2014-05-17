@@ -1,5 +1,5 @@
 class MpsController < ApplicationController
-  respond_to :xml, :json
+  respond_to :html, :json
 
   def index
     @seats = Mp.includes([{ winners: :party }, {nominations: :party}]).all
