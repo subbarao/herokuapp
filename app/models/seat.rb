@@ -1,6 +1,6 @@
 class Seat < ActiveRecord::Base
   belongs_to :district
-  has_many :nominations
+  has_many :nominations, :order => 'votes DESC'
   has_many :winners, class_name: 'Nomination', :order => 'votes DESC', limit: 2
 
   def winner

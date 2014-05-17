@@ -5,7 +5,7 @@ class Mla < Seat
       url = "http://eciresults.nic.in/AC/ConstituencywiseS01#{i+1}.htm?ac=#{i+1}"
       page = Nokogiri::HTML(open(url))
       name = page.css("table[style][border] tr:first td").text.split("-").last.strip.titleize
-      current_seat = Seat.create(name: name)
+      current_seat = create(name: name)
 
       page.css("table[style][border] tr:first td").text.split("-").last
 
