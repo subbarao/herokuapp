@@ -1,2 +1,0 @@
-Mla.results
-Mp.results
