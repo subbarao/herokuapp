@@ -1,9 +1,12 @@
 class MlasController < ApplicationController
+  respond_to :xml, :json
   def index
-    @seats = Mla.all
+    @seats = Mla.includes([{ winners: :party }, {nominations: :party}]).all
+    respond_with(@seats, include: { nominations: { include: :party } })
   end
 
   def show
     @seat = Mla.includes(:nominations).find(params[:id])
+    respond_with(@seat, include: [{ winners: :party}, {nominations: :party}])
   end
 end
