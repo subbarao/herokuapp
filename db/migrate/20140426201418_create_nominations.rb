@@ -3,6 +3,7 @@ class CreateNominations < ActiveRecord::Migration
     create_table :nominations do |t|
       t.references :party, index: true
       t.string :candidate
+      t.integer :votes
       t.references :seat, index: true
 
       t.timestamps

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426212725) do
+ActiveRecord::Schema.define(version: 20140426201815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140426212725) do
   create_table "nominations", force: true do |t|
     t.integer  "party_id"
     t.string   "candidate"
+    t.integer  "votes"
     t.integer  "seat_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -39,22 +40,9 @@ ActiveRecord::Schema.define(version: 20140426212725) do
     t.datetime "updated_at"
   end
 
-  create_table "responses", force: true do |t|
-    t.integer  "seat_id"
-    t.integer  "user_id"
-    t.integer  "nomination_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "responses", ["nomination_id"], name: "index_responses_on_nomination_id", using: :btree
-  add_index "responses", ["seat_id"], name: "index_responses_on_seat_id", using: :btree
-  add_index "responses", ["user_id"], name: "index_responses_on_user_id", using: :btree
-
   create_table "seats", force: true do |t|
     t.string   "type"
     t.string   "name"
-    t.string   "incumbent"
     t.integer  "district_id"
     t.datetime "created_at"
     t.datetime "updated_at"

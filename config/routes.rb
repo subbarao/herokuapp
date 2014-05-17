@@ -1,16 +1,5 @@
 Pfl::Application.routes.draw do
-  root 'responses#index'
-
-  get 'auth/:provider/callback', to: 'sessions#create'
-  get 'auth/failure', to: redirect('/')
-  get 'signout', to: 'sessions#destroy', as: 'signout'
-
-  resources :responses, except: [:new, :edit]
-
-  scope('/seats/:seat_id') do
-    resources :responses, only: [:new, :edit]
-  end
-
+  root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

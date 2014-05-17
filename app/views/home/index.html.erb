@@ -1,11 +1,25 @@
-<% unless current_user %>
-  <div class="row-fluid">
-    <div class="span4 offset4">
-      <%= link_to "Cast your vote with Facebok", "/auth/facebook", class: "btn btn-large btn-block btn-primary"  %>
-    </div>
-  </div>
-  <div class="row-fluid">
-    <p> why do you need to login using facebook?.  </p>
-    <p> we want to only allow legitimate users to vote and avoid duplicate votes. </p>
-  </div>
-<% end %>
+<table class="table table-condensed table-bordered">
+  <thead>
+    <tr bgcolor="#a9a9a9">
+      <th>Sl</th>
+      <th>Name</th>
+      <th>Winner</th>
+      <th>Votes</th>
+      <th>Loster</th>
+      <th>Votes</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @seats.each_with_index do |mla, index| %>
+      <tr>
+        <td> <%= index + 1 %> </td>
+        <td><%= mla.name %></td>
+        <td><%= mla.winner.candidate %>(<%= mla.winner.party.name %>)</td>
+        <td><%= mla.winner.votes %></td>
+        <td><%= mla.runner.candidate %>(<%= mla.runner.party.name %>)</td>
+        <td><%= mla.runner.votes %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -3,7 +3,6 @@ class CreateSeats < ActiveRecord::Migration
     create_table :seats do |t|
       t.string :type
       t.string :name
-      t.string :incumbent
       t.references :district, index: true
 
       t.timestamps

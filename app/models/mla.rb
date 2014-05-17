@@ -1,35 +1,19 @@
 require 'open-uri'
 class Mla < Seat
-  def self.create_all
-    district = nil
-    parties = []
-    url = 'http://en.wikipedia.org/wiki/Andhra_Pradesh_Legislative_Assembly_election,_2014'
-    page = Nokogiri::HTML(open(url))
-    seats = page.css(".wikitable")
-    seats[2, seats.length].each do | seat |
-    district = nil
-    parties = []
-      seat.css("tr").each do | tr |
-      if tr.css("th").length > 1
-        ths = tr.css("th")
-        ths[4, ths.length].each do | th |
-          parties.push(Party.find_or_create_by(name: th.text.strip))
-        end
-      else
-        tds = tr.css("td")
-        if tr.css("th").length == 1
-          district = tr.css("th")[0].text.strip
-          district = District.find_or_create_by(name: district)
-        end
-        name = tds[1].text.strip
-        mp = self.create(name: name, district: district, incumbent: tds[2].text.strip)
+  def self.results
+    294.times do | i |
+      url = "http://eciresults.nic.in/AC/ConstituencywiseS01#{i+1}.htm?ac=#{i+1}"
+      page = Nokogiri::HTML(open(url))
+      name = page.css("table[style][border] tr:first td").text.split("-").last.strip.titleize
+      current_seat = Seat.create(name: name)
 
-        tds[3, tds.length].each_with_index do | td, i |
-          next if td.text.strip.blank?
-          Nomination.create(party: parties[i], candidate: td.text.strip, seat: mp)
-        end
+      page.css("table[style][border] tr:first td").text.split("-").last
+
+      page.css("table[style][border] tr[style='font-size:12px;']").each  do | seat |
+        candidate, party, votes = seat.css("td").map(&:text).map(&:titleize)
+        party = Party.find_or_create_by_name(party)
+        current_seat.nominations.create(candidate: candidate, party: party, votes: votes.to_i)
       end
-    end
     end
   end
 end
