@@ -47,7 +47,6 @@ end
 #
 gem "omniauth-facebook"
 gem 'nokogiri'
-gem 'debugger', group: :development
 
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
