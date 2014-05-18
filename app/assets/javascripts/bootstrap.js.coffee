@@ -6,4 +6,4 @@ jQuery ->
     $(this).tab('show')
 
   $('.dropdown-toggle').dropdown()
-  $("#tabs a[href][data-toggle='tab']:first").tab('show')
+  $("#tabs li:eq(1) a").tab('show')
