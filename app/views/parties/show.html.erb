@@ -1,0 +1,35 @@
+<table class="table table-condensed table-bordered">
+  <thead>
+    <tr bgcolor="#a9a9a9">
+      <th>Constituency</th>
+      <th>Name</th>
+      <th>Votes</th>
+      <th>Margin</th>
+      <th>Winner</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @party.won_in_positions.each do |position| %>
+      <tr bgcolor="#a9a9a9">
+        <td colspan="5"> <%= position %> place</td>
+      </tr>
+      <% @party.nominations.with_position(position).each do | candidate | %>
+        <tr>
+          <td> <%= candidate.seat.name %></td>
+          <td> <%= candidate.candidate %></td>
+          <td> <%= candidate.votes %></td>
+          <td>
+            <% if position > 1 %>
+              <%= candidate.lost_by %>
+            <% end %>
+          </td>
+          <td>
+            <% if position > 1 %>
+              <%= with_party_info(candidate.seat.winner) %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

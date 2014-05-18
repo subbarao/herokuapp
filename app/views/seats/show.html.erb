@@ -1,21 +1,12 @@
 <table class="table table-condensed table-bordered">
   <thead>
     <tr bgcolor="#a9a9a9">
-      <th></th>
       <th>Name</th>
       <th>Party</th>
       <th>Votes</th>
     </tr>
   </thead>
-
   <tbody>
-    <% @seat.nominations.each_with_index do |nomination, index| %>
-      <tr>
-        <td> <%= index + 1 %> </td>
-        <td><%= nomination.candidate %></td>
-        <td><%= nomination.party.name %></td>
-        <td><%= nomination.votes %></td>
-      </tr>
-    <% end %>
+    <%= render @seat.nominations %>
   </tbody>
 </table>
