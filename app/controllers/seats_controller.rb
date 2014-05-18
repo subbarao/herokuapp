@@ -1,6 +1,6 @@
 class SeatsController < ApplicationController
   before_filter :set_klass
-
+  caches_action :index, :show
   def index
     @seats = @klass.includes([{ winners: :party }, { winner: :party, runner: :party } ]).all
     render template: 'seats/index'
