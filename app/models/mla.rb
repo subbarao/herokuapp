@@ -9,10 +9,10 @@ class Mla < Seat
 
       page.css("table[style][border] tr:first td").text.split("-").last
 
-      page.css("table[style][border] tr[style='font-size:12px;']").each  do | seat |
+      page.css("table[style][border] tr[style='font-size:12px;']").each_with_index  do | seat, index |
         candidate, party, votes = seat.css("td").map(&:text).map(&:titleize)
         party = Party.find_or_create_by_name(party)
-        current_seat.nominations.create(candidate: candidate, party: party, votes: votes.to_i)
+        current_seat.nominations.create(candidate: candidate, party: party, votes: votes.to_i, position: index + 1)
       end
     end
   end

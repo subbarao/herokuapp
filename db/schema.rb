@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20140426201815) do
     t.integer  "party_id"
     t.string   "candidate"
     t.integer  "votes"
+    t.integer  "position"
     t.integer  "seat_id"
     t.datetime "created_at"
     t.datetime "updated_at"

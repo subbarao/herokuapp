@@ -4,6 +4,7 @@ class CreateNominations < ActiveRecord::Migration
       t.references :party, index: true
       t.string :candidate
       t.integer :votes
+      t.integer :position
       t.references :seat, index: true
 
       t.timestamps
