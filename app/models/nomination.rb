@@ -13,6 +13,14 @@ class Nomination < ActiveRecord::Base
     winner.votes - votes
   end
 
+  def won?
+    winner.id == self.id
+  end
+
+  def lost?
+    !won?
+  end
+
   def winner
     seat.nominations.with_position(1).first
   end

@@ -1,15 +1,15 @@
 <tr>
   <td> <%= candidate.seat.name %></td>
   <td> <%= candidate.candidate %></td>
-  <td> <%= candidate.votes %></td>
+  <td> <%= number_with_delimiter candidate.votes %></td>
   <td>
-    <% if position > 1 %>
-      <%= candidate.lost_by %>
+    <% if candidate.lost?  %>
+      <%= candidate.winner.candidate %>(<%= link_to candidate.winner.party.name, candidate.winner.party %>)
     <% end %>
   </td>
   <td>
-    <% if position > 1 %>
-      <%= candidate.winner.candidate %>(<%= link_to candidate.winner.party.name, candidate.winner.party %>)
+    <% if candidate.lost?  %>
+      <%= number_with_delimiter candidate.lost_by %>
     <% end %>
   </td>
 </tr>

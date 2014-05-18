@@ -1,0 +1,14 @@
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th> Constituency</th>
+      <th> Candidate</th>
+      <th> Votes</th>
+      <th> Lost To</th>
+      <th> Lost By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'nominations/party_nomination', collection: candidates,  as: :candidate %>
+  </tbody>
+</table>

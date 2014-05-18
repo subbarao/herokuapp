@@ -2,8 +2,11 @@ class Party < ActiveRecord::Base
   has_many :nominations
   has_many :seats, through: :nominations
 
-  def won_in_positions
-    seats.joins(:nominations).select("DISTINCT(nominations.position)").map(&:position).sort
+  def mlas_positions
+    seats.mlas.joins(:nominations).select("DISTINCT(nominations.position)").map(&:position).sort
+  end
+  def mps_positions
+    seats.mps.joins(:nominations).select("DISTINCT(nominations.position)").map(&:position).sort
   end
 
   def abbr

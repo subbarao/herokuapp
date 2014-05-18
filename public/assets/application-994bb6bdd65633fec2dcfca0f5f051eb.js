@@ -13632,7 +13632,13 @@ return jQuery;
 (function() {
   jQuery(function() {
     $("a[rel~=popover], .has-popover").popover();
-    return $("a[rel~=tooltip], .has-tooltip").tooltip();
+    $("a[rel~=tooltip], .has-tooltip").tooltip();
+    $('#tabs a').click(function(e) {
+      e.preventDefault();
+      return $(this).tab('show');
+    });
+    $('.dropdown-toggle').dropdown();
+    return $("#tabs a[href][data-toggle='tab']:first").tab('show');
   });
 
 }).call(this);
