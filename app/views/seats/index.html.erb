@@ -15,7 +15,7 @@
         <td><%= mla.name %></td>
         <td><%= mla.winner.candidate %>(<%= link_to mla.winner.party.name, mla.winner.party %>)</td>
         <td><%= mla.winner.votes %></td>
-        <td><%= mla.runner.candidate %>(<%= mla.runner.party.name %>)</td>
+        <td><%= mla.runner.candidate %>(<%= link_to mla.runner.party.name, mla.runner.party %>)</td>
         <td><%= mla.runner.votes %></td>
         <td><%= link_to 'Candidates', mla, class: 'btn btn-primary' %></td>
       </tr>

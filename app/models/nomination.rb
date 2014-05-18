@@ -4,6 +4,10 @@ class Nomination < ActiveRecord::Base
   scope :with_position, ->(position) { where(position: position) }
 
   def lost_by
-    seat.winner.votes - votes
+    winner.votes - votes
+  end
+
+  def winner
+    seat.nominations.with_position(1).first
   end
 end
