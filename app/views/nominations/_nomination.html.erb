@@ -1,5 +1,6 @@
 <tr>
   <td><%= nomination.candidate %></td>
-  <td><%= nomination.party.name %></td>
+  <td><%= nomination.party.abbr %></td>
   <td><%= nomination.votes %></td>
+  <td><%= number_to_percentage(nomination.percentage, precision: 1) %></td>
 </tr>

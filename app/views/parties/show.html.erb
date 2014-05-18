@@ -1,36 +1,20 @@
-<h3><%= @party.name %> </h3>
-<table class="table table-condensed table-bordered">
-  <thead>
-    <tr bgcolor="#a9a9a9">
-      <th>Constituency</th>
-      <th>Name</th>
-      <th>Votes</th>
-      <th>Margin</th>
-      <th>Winner</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @party.won_in_positions.each do |position| %>
-      <tr bgcolor="#a9a9a9">
-        <td colspan="5"> <%= position %> place</td>
-      </tr>
-      <% @party.nominations.with_position(position).each do | candidate | %>
+  <h3><%= @party.name %> </h3>
+  <table class="table table-hover table-bordered">
+    <tbody>
+      <% @party.won_in_positions.each do |position| %>
         <tr>
-          <td> <%= candidate.seat.name %></td>
-          <td> <%= candidate.candidate %></td>
-          <td> <%= candidate.votes %></td>
-          <td>
-            <% if position > 1 %>
-              <%= candidate.lost_by %>
-            <% end %>
-          </td>
-          <td>
-            <% if position > 1 %>
-              <%= candidate.winner.candidate %>(<%= link_to candidate.winner.party.name, candidate.winner.party %>)
-            <% end %>
-          </td>
+          <th colspan="1"> <%= position %> place</td>
+          <th colspan="4"> Parliament (<%= @party.nominations.with_position(position).mps.count %>)</td>
         </tr>
+        <%= render partial: 'nominations/mp_seperator' %>
+        <%= render partial: 'nominations/party_nomination', collection: @party.nominations.with_position(position).mlas, locals: { position: position }, as: :candidate %>
+
+        <tr>
+          <th colspan="1"> <%= position %> place</td>
+          <th colspan="4"> Parliament (<%= @party.nominations.with_position(position).mps.count %>)</td>
+        </tr>
+        <%= render partial: 'nominations/mla_seperator' %>
+        <%= render partial: 'nominations/party_nomination', collection: @party.nominations.with_position(position).mps, locals: { position: position }, as: :candidate  %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>

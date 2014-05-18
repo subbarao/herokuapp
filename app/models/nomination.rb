@@ -2,6 +2,12 @@ class Nomination < ActiveRecord::Base
   belongs_to :party
   belongs_to :seat
   scope :with_position, ->(position) { where(position: position) }
+  scope :mlas, -> { joins(:seat).where("seats.type = ?", 'Mla') }
+  scope :mps, -> { joins(:seat).where("seats.type = ?", 'Mp') }
+
+  def percentage
+    (votes * 100.0)/ seat.total_votes
+  end
 
   def lost_by
     winner.votes - votes
