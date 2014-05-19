@@ -4,6 +4,7 @@ class CreateSeats < ActiveRecord::Migration
       t.string :type
       t.string :name
       t.references :district, index: true
+      t.references :state, index: true
 
       t.timestamps
     end

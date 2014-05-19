@@ -54,3 +54,4 @@ gem "twitter-bootstrap-rails"
 gem 'seed_dump'
 gem 'actionpack-action_caching'
 gem 'rails_12factor', group: :production
+gem 'debugger'

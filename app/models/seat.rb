@@ -1,5 +1,6 @@
 class Seat < ActiveRecord::Base
   belongs_to :district
+  belongs_to :state
   has_many :nominations, -> { order("votes desc") }
   scope :mlas, -> { where(type: 'Mla') }
   scope :mps, -> { where(type: 'Mp') }

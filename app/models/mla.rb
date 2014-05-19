@@ -11,7 +11,8 @@ class Mla < Seat
 
       page.css("table[style][border] tr[style='font-size:12px;']").each_with_index  do | seat, index |
         candidate, party, votes = seat.css("td").map(&:text).map(&:titleize)
-        party = Party.find_or_create_by_name(party)
+        party = Party.find_or_create_by(name: party)
+        putc '.'
         current_seat.nominations.create(candidate: candidate, party: party, votes: votes.to_i, position: index + 1)
       end
     end
