@@ -36,7 +36,14 @@
             <ul class="nav">
               <li><%= link_to "Home", root_path  %></li>
               <li><%= link_to "Assembly", mlas_path  %></li>
-              <li><%= link_to "Parliament", mps_path  %></li>
+              <div class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Parliament</a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <% State.all.each do | state | %>
+                    <li><%= link_to state.name, [ state, :mps]  %></li>
+                  <% end %>
+                </ul>
+                </div>
               <li>
                 <div class="fb-like" data-href="http://theerpu.com" data-layout="box_count" data-action="recommend" data-show-faces="true" data-share="true"></div>
               </li>

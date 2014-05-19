@@ -26,9 +26,10 @@ class Mp < Seat
       id= findUrl(state_link)
       strValues = page.css("##{id}").first.attributes["value"].text
       strac = strValues.split(';');
-      baseURL = "http://eciresults.nic.in/Constituencywise"+ state_link + strac[0].split(',')[0] + '.htm'
+      statePart = "#{state_link}"
       strac.each do | seatVal |
-        seatUrl = "#{baseURL}?ac=#{seatVal.split(',')[0].strip}"
+        seatPart = seatVal.split(',')[0].strip
+        seatUrl = "http://eciresults.nic.in/Constituencywise#{state_link}#{seatPart}.htm?ac=#{seatPart}"
         results(seatUrl)
       end
     end

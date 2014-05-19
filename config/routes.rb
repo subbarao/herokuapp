@@ -4,6 +4,10 @@ Pfl::Application.routes.draw do
   root 'mlas#index'
   resources :mlas, only: [:index, :show]
   resources :mps, only: [:index, :show]
+
+  resources :state do
+    resources :mps, only: [:index, :show]
+  end
   resources :parties, only: [:index, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
